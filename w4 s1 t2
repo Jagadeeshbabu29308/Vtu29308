@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        
+        while (T-- > 0) {
+            String s = sc.next();
+            int n = s.length();
+
+            String left, right;
+
+            if (n % 2 == 0) {
+                left = s.substring(0, n / 2);
+                right = s.substring(n / 2);
+            } else {
+                left = s.substring(0, n / 2);
+                right = s.substring(n / 2 + 1);
+            }
+
+            int[] freq1 = new int[26];
+            int[] freq2 = new int[26];
+
+            for (char c : left.toCharArray()) {
+                freq1[c - 'a']++;
+            }
+
+            for (char c : right.toCharArray()) {
+                freq2[c - 'a']++;
+            }
+
+            boolean lapindrome = true;
+            for (int i = 0; i < 26; i++) {
+                if (freq1[i] != freq2[i]) {
+                    lapindrome = false;
+                    break;
+                }
+            }
+
+            System.out.println(lapindrome ? "YES" : "NO");
+        }
+
+        sc.close();
+    }
+}
